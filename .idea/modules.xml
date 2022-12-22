@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/CamundaStudies.iml" filepath="$PROJECT_DIR$/.idea/CamundaStudies.iml" />
+      <module fileurl="file://$PROJECT_DIR$/twitter-qa/twitter-qa.iml" filepath="$PROJECT_DIR$/twitter-qa/twitter-qa.iml" />
     </modules>
   </component>
 </project>

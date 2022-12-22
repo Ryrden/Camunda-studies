@@ -4,12 +4,9 @@
     <bpmn:startEvent id="StartEvent_1" name="Tweet Received">
       <bpmn:outgoing>Flow_1yna4ne</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:task id="Activity_0kf1s0q" name="Review Tweet">
-      <bpmn:incoming>Flow_1yna4ne</bpmn:incoming>
-      <bpmn:outgoing>Flow_00gigdq</bpmn:outgoing>
-    </bpmn:task>
     <bpmn:sequenceFlow id="Flow_1yna4ne" sourceRef="StartEvent_1" targetRef="Activity_0kf1s0q" />
     <bpmn:exclusiveGateway id="Gateway_0ipan4k" name="Approved?">
+      <bpmn:extensionElements />
       <bpmn:incoming>Flow_00gigdq</bpmn:incoming>
       <bpmn:outgoing>Flow_047wwz8</bpmn:outgoing>
       <bpmn:outgoing>Flow_0ltbnwz</bpmn:outgoing>
@@ -33,6 +30,10 @@
       <bpmn:incoming>Flow_1ngmjr5</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_1ngmjr5" sourceRef="Activity_04vzd82" targetRef="Event_0k6yl92" />
+    <bpmn:task id="Activity_0kf1s0q" name="Review Tweet">
+      <bpmn:incoming>Flow_1yna4ne</bpmn:incoming>
+      <bpmn:outgoing>Flow_00gigdq</bpmn:outgoing>
+    </bpmn:task>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1so2h65">
@@ -41,10 +42,6 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="181" y="155" width="79" height="14" />
         </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0kf1s0q_di" bpmnElement="Activity_0kf1s0q">
-        <dc:Bounds x="290" y="90" width="100" height="80" />
-        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0ipan4k_di" bpmnElement="Gateway_0ipan4k" isMarkerVisible="true">
         <dc:Bounds x="445" y="105" width="50" height="50" />
@@ -71,6 +68,9 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="713" y="155" width="74" height="14" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0mxq851_di" bpmnElement="Activity_0kf1s0q">
+        <dc:Bounds x="290" y="90" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1yna4ne_di" bpmnElement="Flow_1yna4ne">
         <di:waypoint x="238" y="130" />
