@@ -2,17 +2,17 @@ package com.camunda.training;
 
 import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.camunda.bpm.engine.test.Deployment;
-import org.camunda.bpm.extension.junit5.test.ProcessEngineExtension;
+import org.camunda.bpm.extension.process_test_coverage.junit5.ProcessEngineCoverageExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.camunda.bpm.engine.test.assertions.ProcessEngineTests.*;
-import static org.assertj.core.api.Assertions.*;
+import static org.camunda.bpm.engine.test.assertions.ProcessEngineTests.assertThat;
+import static org.camunda.bpm.engine.test.assertions.ProcessEngineTests.runtimeService;
 
-@ExtendWith(ProcessEngineExtension.class)
+@ExtendWith(ProcessEngineCoverageExtension.class)
 public class ProcessJUnitTest {
   
   @Test
@@ -21,7 +21,7 @@ public class ProcessJUnitTest {
     // Create a HashMap to put in variables for the process instance
     Map<String, Object> variables = new HashMap<String, Object>();
     variables.put("approved", true);
-    variables.put("content", "Exercise 4 test - Ryan Souza");
+    variables.put("content", "Exercise 4 test coverage - Ryan Souza");
     // Start process with Java API and variables
     ProcessInstance processInstance = runtimeService().startProcessInstanceByKey("TwitterQAProcess", variables);
     // Make assertions on the process instance
