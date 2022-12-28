@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0q0nyqh" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.6.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
   <bpmn:process id="TwitterQAProcess" name="Twitter QA" isExecutable="true">
-    <bpmn:startEvent id="StartEvent_1" name="Tweet Received">
+    <bpmn:startEvent id="StartEvent_1" name="Tweet Received" camunda:formKey="embedded:app:forms/tweetForm.html">
       <bpmn:outgoing>Flow_1yna4ne</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_1yna4ne" sourceRef="StartEvent_1" targetRef="Activity_0kf1s0q" />
@@ -32,7 +32,7 @@
       <bpmn:incoming>Flow_047wwz8</bpmn:incoming>
       <bpmn:outgoing>Flow_0cvkgt2</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:userTask id="Activity_0kf1s0q" name="Review Tweet" camunda:candidateGroups="management">
+    <bpmn:userTask id="Activity_0kf1s0q" name="Review Tweet" camunda:formKey="embedded:app:forms/reviewForm.html" camunda:candidateGroups="management">
       <bpmn:incoming>Flow_1yna4ne</bpmn:incoming>
       <bpmn:outgoing>Flow_00gigdq</bpmn:outgoing>
     </bpmn:userTask>
