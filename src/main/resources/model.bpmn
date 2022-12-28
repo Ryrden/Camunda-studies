@@ -28,7 +28,7 @@
       <bpmn:outgoing>Flow_047wwz8</bpmn:outgoing>
       <bpmn:outgoing>Flow_0ltbnwz</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:serviceTask id="Activity_1bkp2t5" name="Publish on Twitter" camunda:class="com.camunda.training.CreateTweetDelegate">
+    <bpmn:serviceTask id="Activity_1bkp2t5" name="Publish on Twitter" camunda:asyncBefore="true" camunda:class="com.camunda.training.CreateTweetDelegate">
       <bpmn:incoming>Flow_047wwz8</bpmn:incoming>
       <bpmn:outgoing>Flow_0cvkgt2</bpmn:outgoing>
     </bpmn:serviceTask>
