@@ -16,6 +16,8 @@ import static org.camunda.bpm.engine.test.assertions.ProcessEngineTests.assertTh
 import static org.camunda.bpm.engine.test.assertions.ProcessEngineTests.runtimeService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.*;
+import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.execute;
+import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.findId;
 
 @ExtendWith(ProcessEngineCoverageExtension.class)
 public class ProcessJUnitTest {
@@ -26,7 +28,7 @@ public class ProcessJUnitTest {
     // Create a HashMap to put in variables for the process instance
     Map<String, Object> variables = new HashMap<String, Object>();
     //variables.put("approved", true);
-    variables.put("content", "Exercise 7 - Network error Ryan S. Junit");
+    variables.put("content", "Exercise 8 - Ryan S. Junit");
     // Start process with Java API and variables
     ProcessInstance processInstance = runtimeService().startProcessInstanceByKey("TwitterQAProcess", variables);
 
@@ -36,14 +38,13 @@ public class ProcessJUnitTest {
             .taskCandidateGroup("management")
             .processInstanceId(processInstance.getId())
             .list();
+
     //assert that taskList is not null and has size equal 1
     assertThat(taskList)
             .isNotNull()
             .hasSize(1);
 
     Task task = taskList.get(0);
-
-    String generatedActivityId = processInstance.getProcessDefinitionId();
 
     assertThat(processInstance).isStarted().isWaitingAt(task.getTaskDefinitionKey());
 
@@ -63,4 +64,20 @@ public class ProcessJUnitTest {
     assertThat(processInstance).isEnded();
   }
 
+  @Test
+  @Deployment(resources = "model.bpmn")
+  public void testTweetRejected(){
+    Map<String, Object> variables = new HashMap<String, Object>();
+    //variables.put("approved", true);
+    variables.put("content", "Exercise 8 - Ryan S. Junit");
+    variables.put("approved", false);
+    // Start process with Java API and variables
+    ProcessInstance processInstance = runtimeService()
+            .createProcessInstanceByKey("TwitterQAProcess")
+            .setVariables(variables)
+            .startAfterActivity(findId("Review Tweet"))
+            .execute();
+
+    assertThat(processInstance).isEnded().hasPassed(findId("Tweet Rejected"));
+  }
 }
