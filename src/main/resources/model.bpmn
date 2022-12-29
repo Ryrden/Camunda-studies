@@ -17,12 +17,6 @@
     <bpmn:endEvent id="Event_0k6yl92" name="Tweet Rejected">
       <bpmn:incoming>Flow_1ngmjr5</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_1ngmjr5" sourceRef="Activity_04vzd82" targetRef="Event_0k6yl92" />
-    <bpmn:scriptTask id="Activity_04vzd82" name="Notify employee of rejection" scriptFormat="javascript">
-      <bpmn:incoming>Flow_0ltbnwz</bpmn:incoming>
-      <bpmn:outgoing>Flow_1ngmjr5</bpmn:outgoing>
-      <bpmn:script>print('Tweet reject');</bpmn:script>
-    </bpmn:scriptTask>
     <bpmn:exclusiveGateway id="Gateway_0ipan4k" name="Approved?" default="Flow_0ltbnwz">
       <bpmn:incoming>Flow_00gigdq</bpmn:incoming>
       <bpmn:outgoing>Flow_047wwz8</bpmn:outgoing>
@@ -36,6 +30,11 @@
       <bpmn:incoming>Flow_1yna4ne</bpmn:incoming>
       <bpmn:outgoing>Flow_00gigdq</bpmn:outgoing>
     </bpmn:userTask>
+    <bpmn:serviceTask id="Activity_04vzd82" name="Notify user of rejection" camunda:type="external" camunda:topic="notification">
+      <bpmn:incoming>Flow_0ltbnwz</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ngmjr5</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1ngmjr5" sourceRef="Activity_04vzd82" targetRef="Event_0k6yl92" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="TwitterQAProcess">
@@ -57,9 +56,6 @@
           <dc:Bounds x="712" y="265" width="77" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0rzxoes_di" bpmnElement="Activity_04vzd82">
-        <dc:Bounds x="550" y="200" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0jv8se8_di" bpmnElement="Gateway_0ipan4k" isMarkerVisible="true">
         <dc:Bounds x="445" y="105" width="50" height="50" />
         <bpmndi:BPMNLabel>
@@ -71,6 +67,10 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_03v8par_di" bpmnElement="Activity_0kf1s0q">
         <dc:Bounds x="290" y="90" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_16b45bj_di" bpmnElement="Activity_04vzd82">
+        <dc:Bounds x="550" y="200" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1yna4ne_di" bpmnElement="Flow_1yna4ne">
         <di:waypoint x="238" y="130" />
